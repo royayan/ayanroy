@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<h2>People Search</h2>
+
+<input type="text" id="searchInput" onkeyup="search()">
+
+<table id="peopleTable">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Phone</th>
+  </tr>
+  <tr>
+    <td>John Doe</td>
+    <td>123 Main St.</td>
+    <td>555-555-5555</td>
+  </tr>
+  <tr>
+    <td>Jane Doe</td>
+    <td>456 Elm St.</td>
+    <td>555-555-5556</td>
+  </tr>
+  <tr>
+    <td>Bob Smith</td>
+    <td>789 Oak St.</td>
+    <td>555-555-5557</td>
+  </tr>
+</table>
+
+<script>
+  function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("peopleTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+</script>
+
+</body>
+</html>
